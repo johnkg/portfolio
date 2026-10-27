@@ -3,7 +3,7 @@ import { url } from '../../lib/url';
 import Base from '../../layouts/Base.astro';
 import ProjectIcon from '../../components/ProjectIcon.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
-import { projects, type Project } from '../../data/projects';
+import { projects, site, type Project } from '../../data/projects';
 
 export function getStaticPaths() {
   return projects.map((project, i) => ({
@@ -24,7 +24,7 @@ const updated = new Date(project.updated).toLocaleDateString('en-GB', {
 });
 ---
 
-<Base title={`${project.name} · johnkg`} description={project.summary}>
+<Base title={`${project.name} · ${site.name}`} description={project.summary}>
   <article class="detail">
     <a class="back" href={url('/#work')}>← All projects</a>
     <header class={`tile tone-${project.tone} detail-head`}>

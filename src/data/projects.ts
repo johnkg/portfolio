@@ -27,7 +27,7 @@ export interface Project {
 }
 
 export const site = {
-  name: 'johnkg',
+  name: 'Joseph Ko Gaw',
   github: 'https://github.com/johnkg',
   /** Set to an address to show an email button in the footer. */
   email: null as string | null,
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     ],
     kicker: 'Flutter · Kids',
     stack: ['Flutter', 'Dart'],
-    live: null,
+    live: 'https://johnkg.github.io/doodle_time/',
     tone: 'sun',
     updated: '2026-10-27',
     span: 7,
