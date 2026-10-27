@@ -1,0 +1,27 @@
+---
+import ProjectIcon from './ProjectIcon.astro';
+import LinkButtons from './LinkButtons.astro';
+import type { Project } from '../data/projects';
+interface Props {
+  project: Project;
+  big?: boolean;
+}
+const { project, big = false } = Astro.props;
+const style = project.span ? `--span:${project.span}` : undefined;
+---
+
+<article class:list={['card', `tone-${project.tone}`, { big }]} style={style}>
+  <div class="card-top">
+    <ProjectIcon slug={project.slug} size={big ? 64 : 52} />
+    <div class="badges">
+      {project.building && <span class="badge badge-build">Being built</span>}
+      {project.private && <span class="badge">Private repo</span>}
+    </div>
+  </div>
+  <div class="card-body">
+    <span class="kicker">{project.kicker}</span>
+    <h3><a class="stretch" href={`/projects/${project.slug}/`}>{project.name}</a></h3>
+    <p>{project.summary}</p>
+  </div>
+  <LinkButtons project={project} />
+</article>

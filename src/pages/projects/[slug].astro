@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectIcon from '../../components/ProjectIcon.astro';
+import LinkButtons from '../../components/LinkButtons.astro';
+import { projects, type Project } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+interface Props {
+  project: Project;
+  next: Project;
+}
+const { project, next } = Astro.props;
+const updated = new Date(project.updated).toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<Base title={`${project.name} · johnkg`} description={project.summary}>
+  <article class="detail">
+    <a class="back" href="/#work">← All projects</a>
+    <header class={`tile tone-${project.tone} detail-head`}>
+      <ProjectIcon slug={project.slug} size={88} />
+      <div>
+        <div class="badges">
+          <span class="kicker">{project.kicker}</span>
+          {project.building && <span class="badge badge-build">Being built</span>}
+          {project.private && <span class="badge">Private repo</span>}
+        </div>
+        <h1>{project.name}</h1>
+        <p class="lead">{project.summary}</p>
+      </div>
+    </header>
+
+    <div class="detail-body">
+      <div class="tile">
+        <h2>About</h2>
+        <p>{project.blurb}</p>
+        <ul class="points">
+          {project.points.map((pt) => <li>{pt}</li>)}
+        </ul>
+      </div>
+      <aside class="tile tone-white">
+        <h2>Details</h2>
+        <dl class="facts">
+          <dt>Built with</dt>
+          <dd class="chips">{project.stack.map((s) => <span class="chip">{s}</span>)}</dd>
+          <dt>Last updated</dt>
+          <dd>{updated}</dd>
+          <dt>Repository</dt>
+          <dd>{project.private ? 'Private' : 'Public'}</dd>
+        </dl>
+        <LinkButtons project={project} />
+        {project.private && <p class="note">The GitHub link opens only for the repo owner.</p>}
+      </aside>
+    </div>
+
+    <a class="tile next" href={`/projects/${next.slug}/`}>
+      <span class="eyebrow">Next project</span>
+      <span class="next-name">{next.name} →</span>
+    </a>
+  </article>
+</Base>

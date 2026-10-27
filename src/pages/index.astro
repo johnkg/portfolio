@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects, featured, more, building } from '../data/projects';
+
+const flutter = projects.filter((p) => p.stack.includes('Flutter')).length;
+const isPublic = projects.filter((p) => !p.private).length;
+---
+
+<Base
+  title="johnkg · apps, games and tools"
+  description="Portfolio of johnkg: Flutter apps and games, C# and TypeScript tools. Every project links to GitHub."
+>
+  <section class="hero" aria-label="Introduction">
+    <div class="tile hero-main">
+      <span class="chip">Flutter dev · game maker · tool builder</span>
+      <h1>
+        I make little apps that <mark class="m-sun">teach</mark>, <mark class="m-sky">play</mark> and <mark class="m-coral">help</mark>.
+      </h1>
+      <p>Flutter on the front, C# and TypeScript behind it. {projects.length} projects, every one linked to GitHub.</p>
+      <div class="links">
+        <a class="btn btn-sun" href="#work">See the projects</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <a class="tile tone-sun building" href={`/projects/${building.slug}/`}>
+        <span class="eyebrow">Now building</span>
+        <span class="building-name">{building.name}</span>
+        <span>{building.summary}</span>
+      </a>
+      <dl class="tile stats">
+        <div><dt>Projects</dt><dd>{projects.length}</dd></div>
+        <div><dt>Flutter apps</dt><dd>{flutter}</dd></div>
+        <div><dt>Public repos</dt><dd>{isPublic}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-h" class="block">
+    <h2 id="work-h">The toy box</h2>
+    <div class="bento">
+      {featured.map((p) => <ProjectCard project={p} big />)}
+    </div>
+  </section>
+
+  <section id="more" aria-labelledby="more-h" class="block">
+    <h2 id="more-h">Also in the workshop</h2>
+    <div class="grid">
+      {more.map((p) => <ProjectCard project={p} />)}
+    </div>
+    <p class="note">
+      <span class="badge">Private repo</span> projects are on GitHub but only the owner can open them.
+    </p>
+  </section>
+</Base>
