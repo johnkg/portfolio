@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import Base from '../layouts/Base.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { projects, featured, more, building } from '../data/projects';
@@ -23,7 +24,7 @@ const isPublic = projects.filter((p) => !p.private).length;
       </div>
     </div>
     <div class="hero-side">
-      <a class="tile tone-sun building" href={`/projects/${building.slug}/`}>
+      <a class="tile tone-sun building" href={url(`/projects/${building.slug}/`)}>
         <span class="eyebrow">Now building</span>
         <span class="building-name">{building.name}</span>
         <span>{building.summary}</span>

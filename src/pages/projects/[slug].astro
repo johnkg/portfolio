@@ -1,4 +1,5 @@
 ---
+import { url } from '../../lib/url';
 import Base from '../../layouts/Base.astro';
 import ProjectIcon from '../../components/ProjectIcon.astro';
 import LinkButtons from '../../components/LinkButtons.astro';
@@ -25,7 +26,7 @@ const updated = new Date(project.updated).toLocaleDateString('en-GB', {
 
 <Base title={`${project.name} · johnkg`} description={project.summary}>
   <article class="detail">
-    <a class="back" href="/#work">← All projects</a>
+    <a class="back" href={url('/#work')}>← All projects</a>
     <header class={`tile tone-${project.tone} detail-head`}>
       <ProjectIcon slug={project.slug} size={88} />
       <div>
@@ -62,7 +63,7 @@ const updated = new Date(project.updated).toLocaleDateString('en-GB', {
       </aside>
     </div>
 
-    <a class="tile next" href={`/projects/${next.slug}/`}>
+    <a class="tile next" href={url(`/projects/${next.slug}/`)}>
       <span class="eyebrow">Next project</span>
       <span class="next-name">{next.name} →</span>
     </a>

@@ -1,4 +1,5 @@
 ---
+import { url } from '../lib/url';
 import '@fontsource-variable/fredoka';
 import '@fontsource-variable/nunito';
 import '../styles/global.css';
@@ -18,19 +19,19 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div class="wrap">
       <header class="site-header">
-        <a class="logo" href="/">
-          <img src="/favicon.svg" alt="" width="40" height="40" />
+        <a class="logo" href={url('/')}>
+          <img src={url('/favicon.svg')} alt="" width="40" height="40" />
           {site.name}
         </a>
         <nav aria-label="Main" class="nav">
-          <a href="/#work">Projects</a>
-          <a href="/#more">More</a>
+          <a href={url('/#work')}>Projects</a>
+          <a href={url('/#more')}>More</a>
           <a href="#contact" class="nav-cta">Say hi</a>
         </nav>
       </header>
