@@ -55,6 +55,12 @@ const { slug, size = 56 } = Astro.props;
       <path d="M16 48L22 34L30 42Z" fill="#E8553A"></path>
     </>
   )}
+  {slug === 'moji' && (
+    <>
+      <rect x="14" y="12" width="36" height="40" rx="6" fill="#FFD3C9"></rect>
+      <path d="M22 24H42M32 18V44M24 34H40"></path>
+    </>
+  )}
   {slug === 'articulation-coach' && (
     <>
       <path d="M12 16H44V38H28L18 46V38H12Z" fill="#BFDBFE"></path>

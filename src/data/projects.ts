@@ -159,6 +159,26 @@ export const projects: Project[] = [
     span: 7,
   },
   {
+    slug: 'moji',
+    name: 'Moji',
+    repo: 'moji',
+    private: false,
+    summary: 'Flashcard trainer for reading and speaking basic Japanese and Mandarin.',
+    blurb:
+      'A small trainer for the first steps in two languages: kana, a first set of hanzi, Mandarin tones and survival phrases. Cards come back on a spaced-repetition schedule, and each one can be played aloud.',
+    points: [
+      'Six starter decks: hiragana, katakana, tones, 30 hanzi and phrases',
+      'Spaced repetition with Again, Hard, Good and Easy answers',
+      'Audio through the device or browser text-to-speech voices',
+      'Tests pass and the web build deploys from CI; not yet run on a phone',
+    ],
+    kicker: 'Flutter · Languages',
+    stack: ['Flutter', 'Dart'],
+    live: 'https://johnkg.github.io/moji/',
+    tone: 'coral',
+    updated: '2026-11-13',
+  },
+  {
     slug: 'articulation-coach',
     name: 'Articulation Coach',
     repo: 'articulation-coach',
